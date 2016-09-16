@@ -1,6 +1,6 @@
 # Angular 2 Snippets
 
-`Updated on 2016, Sept 16` | `Version: 2.0`
+`Updated on 2016, Sept 16` | `Angular Version: 2.0`
 
 
 ## TypeScript
