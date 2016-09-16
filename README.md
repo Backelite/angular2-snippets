@@ -15,7 +15,12 @@ function square(num: number): number {
 	return num * num;
 }
 
-class Person {
+interface Person {
+    name: string;
+    age?: number;
+}
+
+class Student:Person {
    constructor(public name: string){
 
    }
