@@ -53,6 +53,45 @@ export class MyAppComponent {}
 export class MyAppComponent {}
 ```
 
+### Access self & child component
+
+`./child.component.ts`
+```
+import { Component, ElementRef } from '@angular/core';
+
+@Component({
+   selector: 'child-component',
+   template: '<p>Child</p>'
+})
+export class ChildComponent {
+    constructor(elementRef: ElementRef) {
+        this.elementRef = elementRef;
+    }
+
+    hide() {
+        this.elementRef.nativeElement.classList.add('hide');
+    }
+}
+```
+
+`./app.component.ts`
+```
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { ChildComponent } './app.component.ts'
+
+@Component({
+   selector: 'my-app',
+   template: '<div><child-component #childComponent></child-component></div>'
+})
+export class MyAppComponent {
+    @ViewChild('childComponent', { read: ElementRef }) childComponent: ElementRef;
+
+    constructor() {
+        this.childComponent.hide();
+    }
+}
+```
+
 ## Directives
 
 ### Attributes Directives
