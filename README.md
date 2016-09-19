@@ -187,3 +187,25 @@ export class MyAppComponent {
     }
 }
 ```
+
+## Misc
+
+### Custom Typings
+
+`./myservice.service.ts`
+```
+/// <reference path="./myExternalLib.d.ts" />
+```
+
+`./myExternalLib.d.ts`
+```
+declare class MyExternalLib {
+}
+
+declare namespace MyExternalLib {
+}
+
+declare module "MyExternalLib" {
+	export = MyExternalLib;
+}
+```
