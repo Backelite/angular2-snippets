@@ -92,6 +92,28 @@ export class MyAppComponent {
 }
 ```
 
+### Conditionnally Add Attribute
+
+`./customInput.component.ts`
+```
+@Component({
+    selector: 'custom-input',
+    inputs: ['required', 'pattern'],
+    template: `
+    <div class="custom-input">
+        <input type="text" name="inputValue" [(ngModel)]="inputValue" [required]="required ? '' : null" [pattern]="pattern ? pattern : null"/>
+    </div>
+    `
+})
+export class CustomInputComponent {}
+```
+
+`./app.component.html`
+```
+<custom-input required></custom-input>
+<custom-input pattern="[0-9]{14}"></custom-input>
+```
+
 ## Directives
 
 ### Attributes Directives
