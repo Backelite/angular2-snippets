@@ -108,10 +108,10 @@ export class MyAppComponent {
 export class CustomInputComponent {}
 ```
 
-`./app.component.html`
+`./ap.component.html`
 ```
 <custom-input required></custom-input>
-<custom-input pattern="[0-9]{14}"></custom-input>
+<custom-input pattern="[0-9]{14}" ></custom-input>
 ```
 
 ## Directives
@@ -206,6 +206,97 @@ export class MyAppComponent {
     tasks: string[];
     constructor(private taskService:TaskService) {
         this.tasks = this.taskService.getTasks();
+    }
+}
+```
+
+## Routing
+
+### Access Route Parameters
+
+`./app.component.ts`
+```
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({})
+export class MyAppComponent {
+    private _sub: any;
+
+    constructor(private _route: ActivatedRoute) {
+    }
+
+	ngOnInit() {
+        this._sub = this._route.params.subscribe(
+            (params: any) => {
+                let email = params['email'];
+                let token = params['token'];
+            });
+    }
+
+	ngOnDestroy() {
+        if(this._sub) {
+            this._sub.unsubscribe();
+        }
+    }
+}
+```
+
+### Access URL Query Parmeters
+
+`./app.component.ts`
+```
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({})
+export class MyAppComponent {
+    private _sub: any;
+
+    constructor(private _route: ActivatedRoute) {
+    }
+
+	ngOnInit() {
+        this._sub = this._route.queryParams.subscribe(
+            (params: any) => {
+                let email = params['email'];
+                let token = params['token'];
+            });
+    }
+
+	ngOnDestroy() {
+        if(this._sub) {
+            this._sub.unsubscribe();
+        }
+    }
+}
+```
+
+### Access URL Fragments (after a #)
+
+`./app.component.ts`
+```
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({})
+export class MyAppComponent {
+    private _sub: any;
+
+    constructor(private _route: ActivatedRoute) {
+    }
+
+	ngOnInit() {
+        this._sub = this._route.fragment.subscribe(
+            (param: any) => {
+                let anchor = param;
+            });
+    }
+
+	ngOnDestroy() {
+        if(this._sub) {
+            this._sub.unsubscribe();
+        }
     }
 }
 ```
